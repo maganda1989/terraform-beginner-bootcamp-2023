@@ -110,32 +110,32 @@ We need to be careful when using the init because it will not rerun if we restar
 ### Working Env Vars
 
 #### env command 
-We can list out all Environment Variables (Env Vars) using the ´env´ command
+We can list out all Environment Variables (Env Vars) using the `env` command
 
-We can filter specific env vars using grep eg. ´eng | grep AWS_´
+We can filter specific env vars using grep eg. `eng | grep AWS_`
 
 #### Setting and Unsetting Env Vars
 
-In the terminal we can set using ´export HELLO='world'´
+In the terminal we can set using `export HELLO='world'`
 
-In the terminal we can unset using ´unset HELLO´
+In the terminal we can unset using `unset HELLO`
 
 We can set an env var temporarily when just running a command
 
-´´´sh
+```sh
 HELLO='world' ./bin/print_message
-´´´
+```
 
 Within a bash script we can sent env var without writing export eg.
-´´´sh
+```sh
 
 #!/usr/bin/env bash
 HELLO='world'
 
 echo $HELLO
-´´´
+```
 
-## Printing Vars
+### Printing Vars
 
 We can print an env var using echo code eg. ´echo $HELLO´
 
@@ -151,12 +151,43 @@ If you want Env Vars to persist across all future bash terminals that are open y
 
 We can persist env vars in gitpod by storing them in Gitpod Secrets Storage
 
-´´´
+```sh
 gp env HELLO='world'
-´´´
+```
 
 All future workspaces launched will set the env vars for all bash terminals opened in those workspaces.
 
 You can also set env vars in the ´.gitpod.yml´ but this can only contain non-sensitive  
+
+
+### AWS CLI Installation
+
+AWS CLI is installed for the project via the bash script [`./bin/install_aws_cli`](./bin/install_aws_cli)
+
+ [Getting started Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+[AWS ](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+
+
+ We can check if our AWS credentials is configured correctly by running the following command 
+
+ ```sh
+aws sts get-caller-identity
+```
+
+If it is successful you should see a json pasyload return that looks like this:
+
+```json
+   "UserId": "AEAAXFTTAF3WAEKLTR22V",
+    "Account": "123456789012",
+    "Arn": "arn:aws:iam::123456789012:user/terraform-beginner-bootcamp"
+```
+
+
+We'll need to generate AWS CLI credits from IAM User in order to the user AWS CLI. 
+
+[](https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html)
+ 
+ 
 
 
