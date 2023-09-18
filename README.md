@@ -97,8 +97,7 @@ We could also alternatively
 ```sh
 chmod 744 ./bin/install_terraform_cli
 ```
-
-https://en.wikipedia.org/wiki/Chmod
+[Chmod Wiki](https://en.wikipedia.org/wiki/Chmod)
 
 
 ### Github Lifecycle (Before, Init, Command)
@@ -128,7 +127,6 @@ HELLO='world' ./bin/print_message
 
 Within a bash script we can sent env var without writing export eg.
 ```sh
-
 #!/usr/bin/env bash
 HELLO='world'
 
@@ -168,12 +166,13 @@ AWS CLI is installed for the project via the bash script [`./bin/install_aws_cli
 
 [AWS ](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
 
-
  We can check if our AWS credentials is configured correctly by running the following command 
 
+[Get caller identity](https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html)
  ```sh
 aws sts get-caller-identity
 ```
+
 
 If it is successful you should see a json pasyload return that looks like this:
 
@@ -185,7 +184,7 @@ If it is successful you should see a json pasyload return that looks like this:
 
 We'll need to generate AWS CLI credits from IAM User in order to the user AWS CLI. 
 
-[Get called identity](https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html)
+
  
  
 ## Terraform Basics
@@ -211,6 +210,7 @@ At the start of a new terraform project we will run `terraform init` to download
 #### Terraform Plan
 
 `terraform plan` 
+
 This will generate a changeset, about the state of our infrastructure and what will be changed. 
 
 We can output this changeset ie. "plan" to be passed to an apply, but often you can just ignore outputting. 
@@ -218,17 +218,25 @@ We can output this changeset ie. "plan" to be passed to an apply, but often you 
 #### Terraform Apply
 
 `terraform apply`
+
 This will run a plan and pass the changeset to be executed by terraform. Apply should prompt yes or no.
 
 If we want to automatically approve an apply we can provide the auto approve flag eg. `terraform apply --auto-approve`
 
-### Terraform Lock Files
+#### Terraform Destroy
+`terraform destroy` 
+This will destroy resources.
+
+You can also use the auto approve flag to skip the approve promopt eg. `terraform apply --auto-approve`
+This skips the "Are you sure > yes" function with the normal `terraform destroy` command. 
+
+#### Terraform Lock Files
 
 `.terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used with this project.
 
 The Terraform Lock File **should be committed** to your Version Control System (VSC) eg. Github.
 
-### Terraform State files
+#### Terraform State files
 
 `.terraform.tfstate` contain information about the current state of your infrastructure.
 
@@ -240,7 +248,7 @@ If you lose this file, you lose knowing the state of your infrastructure.
 
 `.terraform.tfstate.backup` is the previous state file state. 
 
-### Terraform Directory (Folder)
+#### Terraform Directory (Folder)
 
 `.terraform` directory contains binaries of terraform providers.
 
