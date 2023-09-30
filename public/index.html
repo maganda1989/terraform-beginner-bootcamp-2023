@@ -3,68 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terrahouses - Fun fact page about Kung Carl XVI Gustaf</title>
+    <title>King Carl XVI Gustaf</title>
     <style>
-        body {
+       body {
             font-family: Arial, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+        h1, h2 {
+            color: #007BFF;
+            margin-bottom: 20px;
         }
-        h1 {
-            text-align: center;
-        }
-        h2 {
-            margin-top: 20px;
-        }
+
         p {
-            margin: 10px 0;
+            margin-bottom: 15px;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-container img {
+            width: 30%;
+            transition: transform 0.5s ease;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            cursor: pointer;
+            color: #007BFF;
+        }
+
+        .next {
+            right: 0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Kung Carl XVI Gustaf</h1>
-        <img src="/assets/HMK.jpg" alt="This is the king of Sweden!" width="100%">
-        <body>
 
-            <h1>Fun Facts About King Carl XVI Gustaf</h1>
-        
-            <p>1. King Carl XVI Gustaf is the longest-reigning monarch in Swedish history.</p>
-        
-            <p>2. He was born on April 30, 1946, at Haga Palace in Stockholm, Sweden.</p>
-        
-            <p>3. In 1976, he married Silvia Sommerlath, a German-Brazilian commoner.</p>
-        
-            <p>4. The royal couple has three children: Crown Princess Victoria, Prince Carl Philip, and Princess Madeleine.</p>
-        
-            <p>5. King Carl XVI Gustaf is passionate about environmental issues and sustainable development.</p>
-        
-            <p>6. He is known for his interest in skiing and has participated in various skiing events.</p>
-        
-            <p>7. The king has a reputation for informality and being approachable.</p>
-        
-            <p>8. In 1982, he celebrated the 1,000th anniversary of the establishment of the Swedish monarchy.</p>
-        
-            <p>9. While the Swedish monarchy is largely ceremonial, the king represents Sweden at various national and international events.</p>
-        
-            <p>10. King Carl XVI Gustaf has shown a fondness for animals and is involved in wildlife conservation efforts.</p>
-        
-        
-        <p>U dont wanna get to know the swedish king? Want arcanum? </p>
+    <h1>King Carl XVI Gustaf</h1>
 
-            <h1>How to get starting playing Arcanum<h1>
-                <img src="/assets/assetsarcanum-box-art.jpg" />
-                <img src="/assets/assetsscreenshot.png" />
-      
+    <img src="/assets/HMK.jpg" alt="King Carl XVI Gustaf" style="width: 700px;">
+
+    <h2>Fun Facts</h2>
+
+    <p>1. King Carl XVI Gustaf is the longest-reigning monarch in Swedish history.</p>
+
+    <p>2. He was born on April 30, 1946, at Haga Palace in Stockholm, Sweden.</p>
+
+    <p>3. In 1976, he married Silvia Sommerlath, a German-Brazilian commoner.</p>
+
+    <p>4. The royal couple has three children: Crown Princess Victoria, Prince Carl Philip, and Princess Madeleine.</p>
+
+    <p>5. King Carl XVI Gustaf is passionate about environmental issues and sustainable development.</p>
+
+    <h2>Photo Gallery</h2>
+
+    <div class="image-container">
+        <div class="prev" onclick="changeSlide(-1)">&#10094;</div>
+        <img src="/assets/Vikingkungen.webp" alt="King Carl with his viking helmet" style="width: 30%;">
+        <img src="/assets/Kungenskogen.avif" alt="King chilling in the forest" style="width: 30%;">
+        <img src="/assets/Kungenbil.webp" alt="King rolling down the streets" style="width: 30%;">
+        <img src="/assets/kungconfused.jpg" alt="King dunno" style="width: 30%;">
+        <img src="/assets/kungwifey.jpeg" alt="He just chilling with his wifey" style="width: 30%;">
+        <img src="/assets/youngking.jpg" alt="Young king" style="width: 30%;">
+        <img src="/assets/youngking2.jpg" alt="Good ol days" style="width: 30%;">
+        <div class="next" onclick="changeSlide(1)">&#10095;</div>
     </div>
+
+    <script>
+        let currentSlide = 1;
+
+        function changeSlide(n) {
+            showSlide(currentSlide += n);
+        }
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.image-container img');
+
+            if (n > slides.length) {
+                currentSlide = 1;
+            } else if (n < 1) {
+                currentSlide = slides.length;
+            }
+
+            const translateValue = -(currentSlide - 1) * 50; // Adjusted value for the width
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.transform = `translateX(${translateValue}%)`;
+            }
+        }
+    </script>
+
 </body>
 </html>
