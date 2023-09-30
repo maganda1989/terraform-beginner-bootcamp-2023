@@ -6,12 +6,12 @@ terraform {
   #    name = "terra-house"
   #  }
   #}
- #   cloud {
-#    organization = "terraform-beginner-bootcamp-2023-orhan"
-#    workspaces {
-#      name = "terra-house"
-#   }
-#  }
+    cloud {
+    organization = "terraform-beginner-bootcamp-2023-orhan"
+    workspaces {
+      name = "terraform-cloud"
+   }
+  }
 
 }
 
