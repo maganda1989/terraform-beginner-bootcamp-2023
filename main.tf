@@ -13,12 +13,12 @@ terraform {
   #    name = "terra-house"
   #  }
   #}
-  #cloud {
-  #  organization = "terraform-beginner-bootcamp-2023-orhan"
-  #  workspaces {
-  #    name = "terra-house"
-  #  }
-  #}
+  cloud {
+    organization = "terraform-beginner-bootcamp-2023-orhan"
+    workspaces {
+      name = "terraform-cloud"
+    }
+  }
 
 }
 
@@ -28,22 +28,36 @@ provider "terratowns" {
   token = var.terratowns_access_token
 }
 
-module "terrahouse_aws" {
-  source = "./modules/terrahouse_aws"
+module "home_Highlander_hosting" {
+  source = "./modules/terrahome_aws"
   user_uuid = var.teacherseat_user_uuid
-  index_html_filepath = var.index_html_filepath
-  error_html_filepath = var.error_html_filepath
-  content_version = var.content_version
-  assets_path = var.assets_path
+  public_path = var.Highlander.public_path
+  content_version = var.Highlander.content_version
 }
 
 resource "terratowns_home" "home" {
-  name = "Orhan testing"
+  name = "Highland meadows soup!"
   description = <<DESCRIPTION
-orhan testing this site test
+Turkish yogurt soup, or yayla corbasi is a traditional soup that's made primarily with yogurt
 DESCRIPTION
-  #domain_name = module.terrahouse_aws.cloudfront_url
-  domain_name = "d7jmypizpnr8.cloudfront.net"
+  domain_name = module.home_Highlander_hosting.domain_name
   town = "missingo"
-  content_version = 1
+  content_version = var.Highlander.content_version
 }
+
+#module "home_king_hosting" {
+#  source = "./modules/terrahome_aws"
+#  user_uuid = var.teacherseat_user_uuid
+#  public_path = var.king.public_path
+#  content_version = var.king.content_version
+#}
+
+#resource "terratowns_home" "home_king" {
+#  name = "Kings landing"
+#  description = <<DESCRIPTION
+#Meet the swedish king!
+#DESCRIPTION
+#  domain_name = module.home_king_hosting.domain_name
+#  town = "missingo"
+#  content_version = var.king.content_version
+#}
